@@ -1,3 +1,32 @@
+let data = {
+    cars: [
+        {
+            carBrand: "Toyota",
+            carModels: ["Corolla", "Hilux", "Fortuner", "Yaris"]
+        },
+        {
+            carBrand: "Chevrolet",
+            carModels: ["Aveo", "Spark", "Cruze", "Silverado"]
+        },
+        {
+            carBrand: "Ford",
+            carModels: ["Fiesta", "Focus", "Mustang", "Explorer"]
+        },
+        {
+            carBrand: "Renault",
+            carModels: ["Logan", "Clio"]
+        },
+        {
+            carBrand: "Jeep",
+            carModels: ["Grand Cherokee", "Wrangler"]
+        },
+        {
+            carBrand: "Chery",
+            carModels: ["Tiggo", "QQ", "Arauca", "Orinoco"]
+        }
+    ]
+};
+
 var form = document.getElementById("myForm"),
     imgInput = document.querySelector(".img"),
     file = document.getElementById("imgInput"),
@@ -151,3 +180,36 @@ form.addEventListener('submit', (e) => {
     // modal.style.display = "none"
     // document.querySelector(".modal-backdrop").remove()
 })
+
+window.onload = function () {
+    const selectBrand = document.getElementById("brand");
+    const selectModel = document.getElementById("model");
+    selectModel.disabled = true;
+
+    //Add State Value to State Select option
+    data.cars.forEach((value) => {
+        selectBrand.appendChild(createOption(value.carBrand, value.carBrand));
+    });
+
+    selectBrand.addEventListener("change", function (e) {
+        selectModel.disabled = false;
+        data.cars.forEach((detail, index) => {
+            //console.log(data.cars[index].carModels);
+            if (detail.carBrand == e.target.value) {
+                selectModel.innerHTML = "";
+                selectModel.append(createOption("Select Model", ""));
+                data.cars[index].carModels.forEach((model) => {
+                    selectModel.append(createOption(model, model));
+                });
+            }
+        });
+    });
+
+    //Create New Option Tag With Value
+    function createOption(displayMember, valueMember) {
+        const newOption = document.createElement("option");
+        newOption.value = valueMember;
+        newOption.text = displayMember;
+        return newOption;
+    }
+};
