@@ -51,7 +51,7 @@ showInfo()
 
 newUserBtn.addEventListener('click', () => {
     submitBtn.innerText = 'Submit',
-        modalTitle.innerText = "Register new car"
+    modalTitle.innerText = "Register new car"
     isEdit = false
     imgInput.src = "./image/newCarIcon.jpg"
     form.reset()
