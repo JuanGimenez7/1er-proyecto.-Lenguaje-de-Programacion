@@ -55,31 +55,34 @@
 
                 <div class="modal-header">
                     <h4 class="modal-title">Register new car</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="row">
+                        <button type="submit" form="myForm" class="btn btn-success submit col">Submit</button>
+                        <button type="button" class="btn-close col" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
                 </div>
 
                 <div class="modal-body">
 
-                    <form action="#" id="myForm">
+                    <form class="row" action="#" id="myForm">
 
                         <div class="card imgholder">
                             <label for="imgInput" class="upload">
                                 <input type="file" name="" id="imgInput">
                                 <i class="bi bi-plus-circle-dotted"></i>
                             </label>
-                            <img src="./image/newCarIcon.jpg" alt="" width="200" height="200" class="img">
+                            <img src="./image/newCarIcon.jpg" alt="" class="object-fit-scale">
                         </div>
 
                         <div class="inputField">
                             <div class="row">
-                                <div class="col">
+                                <div class="col-sm-6">
                                     <label for="name">Brand:</label>
                                     <!-- <input type="text" name="" id="c" required> -->
                                     <select name="brand" id="brand" required>
                                         <option value="">Select Brand</option>
                                     </select>
                                 </div>
-                                <div class="col">
+                                <div class="col-sm-6">
                                     <label for="age">Model:</label>
                                     <!-- <input type="number" name="" id="age" required> -->
                                     <select name="model" id="model" required>
@@ -87,12 +90,12 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="row">
+                            <div class="row">
+                                <div class="col-md-6 row">
                                     <label class="col" for="city">Plate:</label>
                                     <input class="col" type="text" name="plate" id="city" required>
                                 </div>
-                                <div class="row">
+                                <div class="col-md-6 row">
                                     <label class="col" for="email">Year:</label>
                                     <input class="col" type="number" min="1960" max="2024" name="year" id="email" required>
                                 </div>
@@ -101,23 +104,35 @@
                                 <label for="sDate">Color:</label>
                                 <input type="color" name="" id="sDate" required>
                             </div>
-                            <div>
-                                <label for="phone">Number:</label>
-                                <input type="text" name="" id="phone" minlength="11" maxlength="11" required>
-                            </div>
-                            <div>
-                                <label for="post">Post:</label>
-                                <input type="text" name="" id="post" required>
+                                <div class="row">
+                                    <div class="col-md-6 row">
+                                        <label class="col" for="name">Name:</label>
+                                        <input class="col" type="text" name="name" id="name" required>
+                                    </div>
+                                    <div class="col-md-6 row">
+                                        <label class="col" for="surname">Surname:</label>
+                                        <input class="col" type="text" name="surname" id="surname" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 row">
+                                        <label class="col" for="iden">ID:</label>
+                                        <input class="col" type="text" name="iden" id="iden" required>
+                                    </div>
+                                    <div class="col-md-6 row">
+                                        <label class="col" for="tel">Phone:</label>
+                                        <input class="col" type="number" name="tel" id="tel" required>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                     </form>
                 </div>
 
-                <div class="modal-footer">
+                <!-- <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" form="myForm" class="btn btn-primary submit">Submit</button>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

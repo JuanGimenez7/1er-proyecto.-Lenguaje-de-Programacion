@@ -22,13 +22,14 @@ td button i {
 
 .modal-body form {
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     align-items: flex-start;
     padding: 0;
+    margin: 0;
 }
 
 .modal-body form .imgholder {
-    width: 200px;
+    width: 30%;
     height: 200px;
     position: relative;
     border-radius: 20px;
@@ -63,20 +64,20 @@ td button i {
 
 .modal-body form .inputField {
     flex-basis: 68%;
-    border-left: 5px groove blue;
+    /* border-left: 5px groove blue; */
     padding-left: 20px;
 }
 
 form .inputField>div {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
     margin-bottom: 20px;
 }
 
 form .inputField>div label {
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 500;
 }
 
@@ -86,12 +87,12 @@ form .inputField>div label {
 }
 
 form .inputField>div input {
-    width: 75%;
-    padding: 10px;
+    width: 100px;
+    padding: 0px;
     border: none;
     outline: none;
     background: transparent;
-    border-bottom: 2px solid blue;
+    border-bottom: 1px solid blue;
 }
 
 .modal-footer .submit {
@@ -101,5 +102,5 @@ form .inputField>div input {
 
 #readData form .inputField>div input {
     color: #000;
-    font-size: 18px;
+    font-size: 15px;
 }
