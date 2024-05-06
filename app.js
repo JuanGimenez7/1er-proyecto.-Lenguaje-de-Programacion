@@ -1,28 +1,28 @@
 let data = {
     cars: [
         {
-            carBrand: "Toyota",
-            carModels: ["Corolla", "Hilux", "Fortuner", "Yaris"]
+            carBrand: "Chery",
+            carModels: ["Arauca", "Orinoco", "QQ", "Tiggo"]
         },
         {
             carBrand: "Chevrolet",
-            carModels: ["Aveo", "Spark", "Cruze", "Silverado"]
+            carModels: ["Aveo", "Cruze", "Silverado", "Spark"]
         },
         {
             carBrand: "Ford",
-            carModels: ["Fiesta", "Focus", "Mustang", "Explorer"]
-        },
-        {
-            carBrand: "Renault",
-            carModels: ["Logan", "Clio"]
+            carModels: ["Explorer", "Fiesta", "Focus", "Mustang"]
         },
         {
             carBrand: "Jeep",
-            carModels: ["Grand Cherokee", "Wrangler"]
+            carModels: ["Compass", "Grand Cherokee", "Renegade", "Wrangler"]
         },
         {
-            carBrand: "Chery",
-            carModels: ["Tiggo", "QQ", "Arauca", "Orinoco"]
+            carBrand: "Renault",
+            carModels: ["Clio", "Espace", "Logan", "Twingo"]
+        },
+        {
+            carBrand: "Toyota",
+            carModels: ["Corolla", "Fortuner", "Hilux", "Yaris"]
         }
     ]
 };
