@@ -14,11 +14,11 @@ let data = {
         },
         {
             carBrand: "Renault",
-            carModels: ["Logan", "Clio"]
+            carModels: ["Logan", "Clio", "Twingo", "Espace"]
         },
         {
             carBrand: "Jeep",
-            carModels: ["Grand Cherokee", "Wrangler"]
+            carModels: ["Grand Cherokee", "Wrangler", "Compass", "Renegade"]
         },
         {
             carBrand: "Chery",
