@@ -59,18 +59,19 @@ newUserBtn.addEventListener('click', () => {
 
 
 file.onchange = function () {
-    if (file.files[0].size < 1000000) {  // 1MB = 1000000
-        var fileReader = new FileReader();
-
-        fileReader.onload = function (e) {
-            imgUrl = e.target.result
-            imgInput.src = imgUrl
-        }
-
-        fileReader.readAsDataURL(file.files[0])
-    }
-    else {
-        alert("This file is too large!")
+    const boolean = file.files[0].size < 1000000 ? true : false; // 1MB = 1000000
+    switch(boolean) { 
+        case true: 
+            var fileReader = new FileReader();
+            fileReader.onload = function (e) {
+                imgUrl = e.target.result
+                imgInput.src = imgUrl
+            }
+            fileReader.readAsDataURL(file.files[0])
+            break;
+        case false:
+            alert("This file is too large!");
+            break;
     }
 }
 
@@ -136,10 +137,12 @@ function editInfo(index, pic, name, Age, City, Email, Phone, Post, Sdate) {
 
 
 function deleteInfo(index) {
-    if (confirm("Are you sure want to delete?")) {
-        getData.splice(index, 1)
-        localStorage.setItem("userProfile", JSON.stringify(getData))
-        showInfo()
+    const boolean = confirm("Are you sure want to delete?") ? true : false;
+    switch(boolean) {
+        case true:
+            getData.splice(index, 1)
+            localStorage.setItem("userProfile", JSON.stringify(getData))
+            showInfo()
     }
 }
 
@@ -157,14 +160,15 @@ form.addEventListener('submit', (e) => {
         employeePost: post.value,
         startDate: sDate.value
     }
-
-    if (!isEdit) {
-        getData.push(information)
-    }
-    else {
-        isEdit = false
-        getData[editId] = information
-    }
+    
+    const boolean =  isEdit ? true : false;
+    switch(boolean) {
+        case true:
+            isEdit = false
+            getData[editId] = information
+        case false:
+            getData.push(information)
+    } 
 
     localStorage.setItem('userProfile', JSON.stringify(getData))
 
