@@ -14,11 +14,11 @@ let data = {
         },
         {
             carBrand: "Renault",
-            carModels: ["Logan", "Clio", "Twingo", "Espace"]
+            carModels: ["Logan", "Clio"]
         },
         {
             carBrand: "Jeep",
-            carModels: ["Grand Cherokee", "Wrangler", "Compass", "Renegade"]
+            carModels: ["Grand Cherokee", "Wrangler"]
         },
         {
             carBrand: "Chery",
@@ -51,7 +51,7 @@ showInfo()
 
 newUserBtn.addEventListener('click', () => {
     submitBtn.innerText = 'Submit',
-    modalTitle.innerText = "Register new car"
+        modalTitle.innerText = "Register new car"
     isEdit = false
     imgInput.src = "./image/newCarIcon.jpg"
     form.reset()
@@ -190,6 +190,10 @@ window.onload = function () {
     const selectModel = document.getElementById("model");
     selectModel.disabled = true;
 
+    function matchBrand(cars, e) {
+        return cars.carBrand === e.target.value
+    }
+
     //Add State Value to State Select option
     data.cars.forEach((value) => {
         selectBrand.appendChild(createOption(value.carBrand, value.carBrand));
@@ -197,17 +201,28 @@ window.onload = function () {
 
     selectBrand.addEventListener("change", function (e) {
         selectModel.disabled = false;
-        data.cars.forEach((detail, index) => {
-            //console.log(data.cars[index].carModels);
-            if (detail.carBrand == e.target.value) {
-                selectModel.innerHTML = "";
-                selectModel.append(createOption("Select Model", ""));
-                data.cars[index].carModels.forEach((model) => {
-                    selectModel.append(createOption(model, model));
-                });
-            }
+        index = data.cars.filter(car => matchBrand(car, e))
+        index = index[0];
+        console.log(index)
+        selectModel.innerHTML = "";
+        selectModel.append(createOption("Select Model", ""));
+        index.carModels.forEach((model) => {
+            selectModel.append(createOption(model, model));
+
         });
     });
+
+    //     data.cars.forEach((detail, index) => {
+    //         //console.log(data.cars[index].carModels);
+    //         if (detail.carBrand == e.target.value) {
+    //             selectModel.innerHTML = "";
+    //             selectModel.append(createOption("Select Model", ""));
+    //             data.cars[index].carModels.forEach((model) => {
+    //                 selectModel.append(createOption(model, model));
+    //             });
+    //         }
+    //     });
+    // });
 
     //Create New Option Tag With Value
     function createOption(displayMember, valueMember) {
