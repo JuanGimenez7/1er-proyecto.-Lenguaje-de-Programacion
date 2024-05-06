@@ -212,18 +212,6 @@ window.onload = function () {
         });
     });
 
-    //     data.cars.forEach((detail, index) => {
-    //         //console.log(data.cars[index].carModels);
-    //         if (detail.carBrand == e.target.value) {
-    //             selectModel.innerHTML = "";
-    //             selectModel.append(createOption("Select Model", ""));
-    //             data.cars[index].carModels.forEach((model) => {
-    //                 selectModel.append(createOption(model, model));
-    //             });
-    //         }
-    //     });
-    // });
-
     //Create New Option Tag With Value
     function createOption(displayMember, valueMember) {
         const newOption = document.createElement("option");
