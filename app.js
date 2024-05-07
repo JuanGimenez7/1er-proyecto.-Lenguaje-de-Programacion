@@ -53,10 +53,10 @@ let isEdit = false, editId
 showInfo()
 
 newUserBtn.addEventListener('click', () => {
-    submitBtn.innerText = 'Submit',
-        modalTitle.innerText = "Register new car"
+    submitBtn.innerText = 'Registrar',
+        modalTitle.innerText = "Registrar nuevo carro"
     isEdit = false
-    imgInput.src = "./image/newCarIcon.jpg"
+    imgInput.src = "./image/CarIcon.jpg"
     form.reset()
 })
 
@@ -177,14 +177,14 @@ form.addEventListener('submit', (e) => {
 
     localStorage.setItem('userProfile', JSON.stringify(getData))
 
-    submitBtn.innerText = "Submit"
-    modalTitle.innerHTML = "Register new car"
+    submitBtn.innerText = "Registrar"
+    modalTitle.innerHTML = "Registrar nuevo carro"
 
     showInfo()
 
     form.reset()
 
-    imgInput.src = "./image/newCarIcon.jpg"
+    imgInput.src = "./image/CarIcon.jpg"
 
     // modal.style.display = "none"
     // document.querySelector(".modal-backdrop").remove()
