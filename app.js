@@ -1,28 +1,28 @@
 let data = {
     cars: [
         {
-            carBrand: "Chery",
-            carModels: ["Arauca", "Orinoco", "QQ", "Tiggo"]
+            carBrand: "Toyota",
+            carModels: ["Corolla", "Hilux", "Fortuner", "Yaris"]
         },
         {
             carBrand: "Chevrolet",
-            carModels: ["Aveo", "Cruze", "Silverado", "Spark"]
+            carModels: ["Aveo", "Spark", "Cruze", "Silverado"]
         },
         {
             carBrand: "Ford",
-            carModels: ["Explorer", "Fiesta", "Focus", "Mustang"]
-        },
-        {
-            carBrand: "Jeep",
-            carModels: ["Compass", "Grand Cherokee", "Renegade", "Wrangler"]
+            carModels: ["Fiesta", "Focus", "Mustang", "Explorer"]
         },
         {
             carBrand: "Renault",
-            carModels: ["Clio", "Espace", "Logan", "Twingo"]
+            carModels: ["Logan", "Clio"]
         },
         {
-            carBrand: "Toyota",
-            carModels: ["Corolla", "Fortuner", "Hilux", "Yaris"]
+            carBrand: "Jeep",
+            carModels: ["Grand Cherokee", "Wrangler"]
+        },
+        {
+            carBrand: "Chery",
+            carModels: ["Tiggo", "QQ", "Arauca", "Orinoco"]
         }
     ]
 };
@@ -31,12 +31,15 @@ var form = document.getElementById("myForm"),
     imgInput = document.querySelector(".img"),
     file = document.getElementById("imgInput"),
     userName = document.getElementById("name"),
-    age = document.getElementById("age"),
+    surname = document.getElementById("surname"),
     city = document.getElementById("city"),
     email = document.getElementById("email"),
-    phone = document.getElementById("phone"),
-    post = document.getElementById("post"),
+    tel = document.getElementById("tel"),
+    iden = document.getElementById("iden"),
     sDate = document.getElementById("sDate"),
+    address = document.getElementById("address"),
+    brand = document.getElementById("brand"),
+    model = document.getElementById("model"),
     submitBtn = document.querySelector(".submit"),
     userInfo = document.getElementById("data"),
     modal = document.getElementById("userForm"),
@@ -59,19 +62,18 @@ newUserBtn.addEventListener('click', () => {
 
 
 file.onchange = function () {
-    const boolean = file.files[0].size < 1000000 ? true : false; // 1MB = 1000000
-    switch(boolean) { 
-        case true: 
-            var fileReader = new FileReader();
-            fileReader.onload = function (e) {
-                imgUrl = e.target.result
-                imgInput.src = imgUrl
-            }
-            fileReader.readAsDataURL(file.files[0])
-            break;
-        case false:
-            alert("This file is too large!");
-            break;
+    if (file.files[0].size < 1000000) {  // 1MB = 1000000
+        var fileReader = new FileReader();
+
+        fileReader.onload = function (e) {
+            imgUrl = e.target.result
+            imgInput.src = imgUrl
+        }
+
+        fileReader.readAsDataURL(file.files[0])
+    }
+    else {
+        alert("This file is too large!")
     }
 }
 
@@ -82,13 +84,16 @@ function showInfo() {
         let createElement = `<tr class="employeeDetails">
             <td>${index + 1}</td>
             <td><img src="${element.picture}" alt="" width="50" height="50"></td>
-            <td>${element.employeeName}</td>
-            <td>${element.employeeAge}</td>
+            <td>${element.carBrand}</td>
+            <td>${element.carModel}</td>
             <td>${element.employeeCity}</td>
             <td>${element.employeeEmail}</td>
-            <td>${element.employeePhone}</td>
-            <td>${element.employeePost}</td>
             <td>${element.startDate}</td>
+            <td>${element.employeeName}</td>
+            <td>${element.employeeAge}</td>
+            <td>${element.employeePost}</td>
+            <td>${element.employeePhone}</td>
+            <td>${element.ownerAdress}</td>
 
 
             <td>
@@ -107,28 +112,28 @@ function showInfo() {
 showInfo()
 
 
-function readInfo(pic, name, age, city, email, phone, post, sDate) {
+function readInfo(pic, name, surname, city, email, tel, iden, sDate) {
     document.querySelector('.showImg').src = pic,
         document.querySelector('#showName').value = name,
-        document.querySelector("#showAge").value = age,
+        document.querySelector("#showAge").value = surname,
         document.querySelector("#showCity").value = city,
         document.querySelector("#showEmail").value = email,
-        document.querySelector("#showPhone").value = phone,
-        document.querySelector("#showPost").value = post,
+        document.querySelector("#showPhone").value = tel,
+        document.querySelector("#showPost").value = iden,
         document.querySelector("#showsDate").value = sDate
 }
 
 
-function editInfo(index, pic, name, Age, City, Email, Phone, Post, Sdate) {
+function editInfo(index, pic, name, surname, City, Email, tel, iden, Sdate) {
     isEdit = true
     editId = index
     imgInput.src = pic
     userName.value = name
-    age.value = Age
+    surname.value = surname
     city.value = City
     email.value = Email,
-        phone.value = Phone,
-        post.value = Post,
+        tel.value = tel,
+        iden.value = iden,
         sDate.value = Sdate
 
     submitBtn.innerText = "Update"
@@ -137,12 +142,10 @@ function editInfo(index, pic, name, Age, City, Email, Phone, Post, Sdate) {
 
 
 function deleteInfo(index) {
-    const boolean = confirm("Are you sure want to delete?") ? true : false;
-    switch(boolean) {
-        case true:
-            getData.splice(index, 1)
-            localStorage.setItem("userProfile", JSON.stringify(getData))
-            showInfo()
+    if (confirm("Are you sure want to delete?")) {
+        getData.splice(index, 1)
+        localStorage.setItem("userProfile", JSON.stringify(getData))
+        showInfo()
     }
 }
 
@@ -151,24 +154,26 @@ form.addEventListener('submit', (e) => {
     e.preventDefault()
 
     const information = {
-        picture: imgInput.src == undefined ? "./image/CarIcon" : imgInput.src,
-        employeeName: userName.value,
-        employeeAge: age.value,
+        picture: imgInput.src == undefined ? "./image/newCarIcon.jpg" : imgInput.src,
+        carBrand: brand.value,
+        carModel: model.value,
         employeeCity: city.value,
         employeeEmail: email.value,
-        employeePhone: phone.value,
-        employeePost: post.value,
-        startDate: sDate.value
+        startDate: sDate.value,
+        employeeName: userName.value,
+        employeeAge: surname.value,
+        employeePost: iden.value,
+        employeePhone: tel.value,
+        ownerAdress: address.value,
     }
-    
-    const boolean =  isEdit ? true : false;
-    switch(boolean) {
-        case true:
-            isEdit = false
-            getData[editId] = information
-        case false:
-            getData.push(information)
-    } 
+
+    if (!isEdit) {
+        getData.push(information)
+    }
+    else {
+        isEdit = false
+        getData[editId] = information
+    }
 
     localStorage.setItem('userProfile', JSON.stringify(getData))
 
@@ -211,6 +216,18 @@ window.onload = function () {
 
         });
     });
+
+    //     data.cars.forEach((detail, index) => {
+    //         //console.log(data.cars[index].carModels);
+    //         if (detail.carBrand == e.target.value) {
+    //             selectModel.innerHTML = "";
+    //             selectModel.append(createOption("Select Model", ""));
+    //             data.cars[index].carModels.forEach((model) => {
+    //                 selectModel.append(createOption(model, model));
+    //             });
+    //         }
+    //     });
+    // });
 
     //Create New Option Tag With Value
     function createOption(displayMember, valueMember) {
