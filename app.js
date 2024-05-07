@@ -1,28 +1,28 @@
 let data = {
     cars: [
         {
-            carBrand: "Toyota",
-            carModels: ["Corolla", "Hilux", "Fortuner", "Yaris"]
+            carBrand: "Chery",
+            carModels: ["Arauca", "Orinoco", "QQ", "Tiggo"]
         },
         {
             carBrand: "Chevrolet",
-            carModels: ["Aveo", "Spark", "Cruze", "Silverado"]
+            carModels: ["Aveo", "Cruze", "Silverado", "Spark"]
         },
         {
             carBrand: "Ford",
-            carModels: ["Fiesta", "Focus", "Mustang", "Explorer"]
-        },
-        {
-            carBrand: "Renault",
-            carModels: ["Logan", "Clio"]
+            carModels: ["Explorer", "Fiesta", "Focus", "Mustang"]
         },
         {
             carBrand: "Jeep",
-            carModels: ["Grand Cherokee", "Wrangler"]
+            carModels: ["Compass", "Grand Cherokee", "Renegade", "Wrangler"]
         },
         {
-            carBrand: "Chery",
-            carModels: ["Tiggo", "QQ", "Arauca", "Orinoco"]
+            carBrand: "Renault",
+            carModels: ["Clio", "Espace", "Logan", "Twingo"]
+        },
+        {
+            carBrand: "Toyota",
+            carModels: ["Corolla", "Fortuner", "Hilux", "Yaris"]
         }
     ]
 };
@@ -62,18 +62,18 @@ newUserBtn.addEventListener('click', () => {
 
 
 file.onchange = function () {
-    if (file.files[0].size < 1000000) {  // 1MB = 1000000
-        var fileReader = new FileReader();
-
-        fileReader.onload = function (e) {
-            imgUrl = e.target.result
-            imgInput.src = imgUrl
-        }
-
-        fileReader.readAsDataURL(file.files[0])
-    }
-    else {
-        alert("This file is too large!")
+    const boolean = file.files[0].size < 1000000 ? true : false; // 1MB = 1000000
+    switch(boolean) {
+        case true:
+            var fileReader = new FileReader();
+            fileReader.onload = function (e) {
+                imgUrl = e.target.result
+                imgInput.src = imgUrl
+            }
+            fileReader.readAsDataURL(file.files[0])
+            break;
+        case false:
+            alert("Imagen muy grande, seleccione una imagen de menos de 1 MB.")
     }
 }
 
@@ -136,16 +136,18 @@ function editInfo(index, pic, name, surname, City, Email, tel, iden, Sdate) {
         iden.value = iden,
         sDate.value = Sdate
 
-    submitBtn.innerText = "Update"
-    modalTitle.innerText = "Update The Form"
+    submitBtn.innerText = "Actualizar"
+    modalTitle.innerText = "Actualizar registro"
 }
 
 
 function deleteInfo(index) {
-    if (confirm("Are you sure want to delete?")) {
-        getData.splice(index, 1)
-        localStorage.setItem("userProfile", JSON.stringify(getData))
-        showInfo()
+    const boolean = confirm("¿Seguro que deseas eliminar este registro?") ? true : false;
+    switch(boolean) {
+        case true:
+            getData.splice(index, 1)
+            localStorage.setItem("userProfile", JSON.stringify(getData))
+            showInfo()
     }
 }
 
@@ -154,7 +156,7 @@ form.addEventListener('submit', (e) => {
     e.preventDefault()
 
     const information = {
-        picture: imgInput.src == undefined ? "./image/newCarIcon.jpg" : imgInput.src,
+        picture: imgInput.src == undefined ? "./image/CarIcon.jpg" : imgInput.src,
         carBrand: brand.value,
         carModel: model.value,
         employeeCity: city.value,
@@ -166,14 +168,16 @@ form.addEventListener('submit', (e) => {
         employeePhone: tel.value,
         ownerAdress: address.value,
     }
-
-    if (!isEdit) {
-        getData.push(information)
+    const boolean = isEdit ? true : false;
+    switch(boolean) {
+        case true:
+            isEdit = false
+            getData[editId] = information
+            break;
+        case false:
+            getData.push(information)
     }
-    else {
-        isEdit = false
-        getData[editId] = information
-    }
+    
 
     localStorage.setItem('userProfile', JSON.stringify(getData))
 
@@ -216,18 +220,6 @@ window.onload = function () {
 
         });
     });
-
-    //     data.cars.forEach((detail, index) => {
-    //         //console.log(data.cars[index].carModels);
-    //         if (detail.carBrand == e.target.value) {
-    //             selectModel.innerHTML = "";
-    //             selectModel.append(createOption("Select Model", ""));
-    //             data.cars[index].carModels.forEach((model) => {
-    //                 selectModel.append(createOption(model, model));
-    //             });
-    //         }
-    //     });
-    // });
 
     //Create New Option Tag With Value
     function createOption(displayMember, valueMember) {
